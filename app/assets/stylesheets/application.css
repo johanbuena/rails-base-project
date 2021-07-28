@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+body::before {
+    display: block;
+    content: '';
+    height: 78px;
+}
+
+/* section {
+    border: 1px solid red;
+}
+
+#signUp {
+    border: 1px solid red;
+}
+
+#signIn {
+    border: 1px solid red;
+} */
+
+/* form {
+    border: 1px solid red;
+} */
