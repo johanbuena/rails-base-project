@@ -16,6 +16,7 @@
           </div>
           <div class="border-top mt-2 col-md-7 d-grid">
             <%= f.submit "Sign in", class: "btn btn-primary mt-2" %>
+            <%= link_to "Resend Email Confirmation", new_confirmation_path(resource_name), class: "mx-auto m-2  " %>
           </div>
         </div>
       <% end %>
