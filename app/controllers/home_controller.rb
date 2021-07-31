@@ -26,7 +26,7 @@ class HomeController < ApplicationController
         end
     end
 
-    def admin_logged_in
-        if current_user.email == "admin@admin.com"
-    end
+    # def admin_logged_in
+    #     if current_user.email == "admin@admin.com"
+    # end
 end
