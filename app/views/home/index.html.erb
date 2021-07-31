@@ -1,56 +1,54 @@
 <% if current_user.present? %>
-    <table class = "home_table table m-auto">
-        <thead>
-            <tr>
-                <th>SYMBOL</th>
-                <th>NAME</th>
-                <th>VOLUME</th>
-                <th>PRICE</th>
-                <th>CHANGE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @stocklist_view.each do |e| %>
-                <tr>
-                    <td>
-                        <%= e.symbol %>
-                    </td>
-                    <td>
-                        <%= e.company_name %>
-                    </td>
-                    <td>
-                        <%= number_with_delimiter(e.avg_total_volume, :delimiter => ',') %>
-                    </td>
-                    <td>
-                        <%= number_to_currency(e.latest_price, :unit => "$") %>
-                    </td>
-                    <td>
-                        <%= e.change_percent_s %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
-  <% else %>
-    <div class="px-4 py-5 my-5 text-center">
-      <img class="d-block mx-auto mb-4" src="https://www.freeiconspng.com/uploads/stock-exchange-icon-png-5.png" alt="" width="72" height="57">
-      <h1 class="display-5 fw-bold">Stocks App</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">
-          This Web Application is purposedly built with the intent of studying Rails Framework, Devise, IEX API and rspec. This is not a real Stock Market Trading Application. Register now to try it!
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="<%= new_user_registration_path %>" class="btn btn-outline-secondary btn-lg px-4">Register</a>
-          <a href="<%= new_user_session_path %>" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
-        </div>
+  <table class = "home_table table m-auto">
+    <thead>
+      <tr>
+        <th>SYMBOL</th>
+        <th>NAME</th>
+        <th>VOLUME</th>
+        <th>PRICE</th>
+        <th>CHANGE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stocklist_view.each do |e| %>
+        <tr>
+          <td>
+            <%= e.symbol %>
+          </td>
+          <td>
+            <%= e.company_name %>
+          </td>
+          <td>
+            <%= number_with_delimiter(e.avg_total_volume, :delimiter => ',') %>
+          </td>
+          <td>
+            <%= number_to_currency(e.latest_price, :unit => "$") %>
+          </td>
+          <td>
+            <%= e.change_percent_s %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://www.freeiconspng.com/uploads/stock-exchange-icon-png-5.png" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold">Stocks App</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        This Web Application is purposedly built with the intent of studying Rails Framework, Devise, IEX API and rspec. This is not a real Stock Market Trading Application. Register now to try it!
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="<%= new_user_registration_path %>" class="btn btn-outline-secondary btn-lg px-4">Register</a>
+        <a href="<%= new_user_session_path %>" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
-
-
 <style>
-.home_table th,td {
-    text-align:center;
-}
+  .home_table th,td {
+      text-align:center;
+  }
 </style>
