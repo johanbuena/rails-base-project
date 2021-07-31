@@ -1,28 +1,41 @@
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
-      <div class="container">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+    <div class="container">
         <a href="<%= root_path %>" class="navbar-brand">Stocks App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navmenu">
-          <ul class="navbar-nav ms-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <a href="<%= edit_user_registration_path %>" class="btn btn-primary m-1">My Account</a>
-              </li>
-              <li class="nav-item">
-                <a href="<%= destroy_user_session_path %>" data-method="delete" class="btn btn-primary m-1">Sign Out</a>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <a href="<%= new_user_session_path %>" class="btn btn-primary m-1">Sign In</a>
-              </li>
-              <li class="nav-item">
-                <a href="<%= new_user_registration_path %>" class="btn btn-primary m-1">Sign Up</a>
-              </li>
-            <% end %>
-          </ul>
+            <ul class="navbar-nav ms-auto">
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <a href="<%= portfolios_path %>" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%= transactions_path %>" class="nav-link">Transactions</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a href="<%= edit_user_registration_path %>" class="dropdown-item">Edit Account</a>
+                            </li>
+                            <li>
+                                <a href="<%= destroy_user_session_path %>" data-method="delete" class="dropdown-item">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <a href="<%= new_user_session_path %>" class="btn btn-primary m-1">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%= new_user_registration_path %>" class="btn btn-primary m-1">Register</a>
+                    </li>
+                <% end %>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
