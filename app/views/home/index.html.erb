@@ -1,6 +1,5 @@
-<div class = "index">
 <% if current_user.present? %>
-    <table class = "table">
+    <table class = "home_table table m-auto">
         <thead>
             <tr>
                 <th>SYMBOL</th>
@@ -47,4 +46,9 @@
         </div>
     </div>
 <% end %>
-</div>
+
+<style>
+.home_table th,td {
+    text-align:center;
+}
+</style>
