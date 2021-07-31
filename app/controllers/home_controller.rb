@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
     def index
-
         if current_user.present?
             client = IEX::Api::Client.new(
                 publishable_token: 'pk_8e835bb9a3e1499480d3372f8afb35f7',
@@ -25,6 +24,9 @@ class HomeController < ApplicationController
                 @stocklist_view.push(client.quote(e))
             end
         end
+    end
 
+    def admin_logged_in
+        if current_user.email == "admin@admin.com"
     end
 end
