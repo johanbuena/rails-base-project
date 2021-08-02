@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+    before_action :user_or_admin
     def index
         if current_user.present?
             client = IEX::Api::Client.new(
@@ -26,7 +27,9 @@ class HomeController < ApplicationController
         end
     end
 
-    # def admin_logged_in
-    #     if current_user.email == "admin@admin.com"
-    # end
+    def user_or_admin
+        if current_user.present? && current_user.email == "admin@admin.com"
+            redirect_to admin_index_path
+        end
+    end
 end

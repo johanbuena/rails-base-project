@@ -1,9 +1,79 @@
 <section class="p-5">
   <div  class="container" id="signIn">
-    <div class="d-sm-flex">
-      <span class="h2 fw-bold col-md-7">
-        admin
-      </span>
+    <div class="">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="allAccount-tab" data-bs-toggle="tab" data-bs-target="#allAccounts" type="button" role="tab">All Accounts</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#allTransactions" type="button" role="tab">All Transactions</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pendingUsers" type="button" role="tab">Pending Users</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="allAccounts" role="tabpanel">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Account Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <th><%= user.first_name %></th>
+                  <td><%= user.last_name %></td>
+                  <td><%= user.email %></td>
+                  <td>
+                    <% if user.account_status == false %>
+                      Pending
+                    <% else %>
+                      Approved
+                    <% end %>
+                  </td>
+                  <td>
+                    <a href="<%=  %>">Manage Account</a>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="allTransactions" role="tabpanel">All Transactions</div>
+        <div class="tab-pane fade" id="pendingUsers" role="tabpanel">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <% if user.account_status == false %>
+                  <tr>
+                    <th><%= user.first_name %></th>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                      <%= text_field :account_status, value: "true", type: :hidden %>
+                      <%= link_to 'Approve Account', admin_path(user), method: :update, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </section>
