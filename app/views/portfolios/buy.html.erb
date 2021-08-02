@@ -1,0 +1,15 @@
+<div>
+    <div>Purchase "<%= @portfolio.company_name %>"</div>
+
+    <% form_tag model: @portfolio do |form| %>
+        <div>
+            <%= form.label :company_name %><br>
+            <%= form.text_field :company_name %>
+        </div>
+
+        <div class = 'submit'>
+            <%= form.submit %>
+        </div>
+    <% end %>
+
+</div>
