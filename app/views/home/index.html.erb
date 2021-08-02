@@ -1,36 +1,6 @@
 <% if current_user.present? %>
     <table class = "home_table table m-auto text-center">
-        <thead>
-            <tr>
-                <th>SYMBOL</th>
-                <th>NAME</th>
-                <th>VOLUME</th>
-                <th>PRICE</th>
-                <th>CHANGE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @stocklist_view.each do |e| %>
-                <tr>
-                <td>
-                    <%= e.symbol %>
-                </td>
-                <td>
-                    <%= e.company_name %>
-                </td>
-                <td>
-                    <%= number_with_delimiter(e.avg_total_volume, :delimiter => ',') %>
-                </td>
-                <td>
-                    <%= number_to_currency(e.latest_price, :unit => "$") %>
-                </td>
-                <td>
-                    <%= e.change_percent_s %>
-                </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+    <h1>Welcome!</h1>
 <% else %>
     <div class="px-4 py-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://www.freeiconspng.com/uploads/stock-exchange-icon-png-5.png" alt="" width="72" height="57">
