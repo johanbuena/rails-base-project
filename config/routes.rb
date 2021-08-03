@@ -4,7 +4,15 @@ Rails.application.routes.draw do
 
   root "home#index"
   get '/buy/:sym', to: 'portfolios#buy', as: 'buy'
-  resources :admin
+
+  get '/admin', to: "admin#index"
+  get '/admin/new', to: "admin#new"
+  post '/admin/new', to: "admin#create"
+  get  '/admin/:id', to: "admin#edit"
+  put '/admin/:id', to: "admin#update"
+  post '/admin/:id', to: "admin#approve"
+  
+
   resources :transactions
   resources :portfolios
 end

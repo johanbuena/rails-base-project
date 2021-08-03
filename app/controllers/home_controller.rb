@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
     def user_or_admin
         if current_user.present? && current_user.email == "admin@admin.com"
-            redirect_to admin_index_path
+            redirect_to admin_path
         end
     end
 end

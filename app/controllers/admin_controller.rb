@@ -1,31 +1,43 @@
 class AdminController < ApplicationController
-    before_action :set_user, only: %i[ show edit update destroy ]
     def index
         @users = User.all
-
-            # if @user.update(:account_status)
-            #     redirect_to admin_index_path
-            # else
-            #   format.html { render :edit, status: :unprocessable_entity }
-            #   format.json { render json: @user.errors, status: :unprocessable_entity }
-            # end
     end
 
-    def update
-          if @user.update(:account_status)
-                redirect_to admin_index_path
-            else
-              format.html { render :edit, status: :unprocessable_entity }
-              format.json { render json: @user.errors, status: :unprocessable_entity }
-            end
-      end
+    def new
+        @user = User.new
+    end
 
-    private 
-    def set_user
+    def create
+        @user = User.create(user_params)
+        if @user.save
+            redirect_to admin_path
+        end
+    end
+
+    def edit
         @user = User.find(params[:id])
     end
 
-    # def user_params
-    #     params.require(:user).permit(:account_status)
-    # end
+    def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            redirect_to admin_path
+        end
+    end
+
+    def approve
+        @user = User.find(params[:id])
+        if @user.update_attributes(:account_status => "true")
+                redirect_to admin_path
+        end
+    end
+
+    private
+    def user_params
+        params.require(:user).permit(:first_name, :last_name, :email, :account_status, :wallet, :confirmed_at, :password, :password_confirmation)
+    end
+
+    def update_user_params
+        params.require(:user).permit(:first_name, :last_name, :email)
+    end
 end

@@ -1,6 +1,6 @@
 <section class="p-5">
   <div  class="container" id="signIn">
-    <div class="">
+    <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="allAccount-tab" data-bs-toggle="tab" data-bs-target="#allAccounts" type="button" role="tab">All Accounts</button>
@@ -38,14 +38,16 @@
                     <% end %>
                   </td>
                   <td>
-                    <a href="<%=  %>">Manage Account</a>
+                    <a href="/admin/<%= user.id %>">Manage Account</a>
                   </td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-        <div class="tab-pane fade" id="allTransactions" role="tabpanel">All Transactions</div>
+        <div class="tab-pane fade" id="allTransactions" role="tabpanel">
+          All Transactions
+        </div>
         <div class="tab-pane fade" id="pendingUsers" role="tabpanel">
           <table class="table">
             <thead>
@@ -64,8 +66,7 @@
                     <td><%= user.last_name %></td>
                     <td><%= user.email %></td>
                     <td>
-                      <%= text_field :account_status, value: "true", type: :hidden %>
-                      <%= link_to 'Approve Account', admin_path(user), method: :update, data: { confirm: 'Are you sure?' } %>
+                      <a href="/admin/<%= user.id %>" data-method="update" data-confirm="Are you sure?">Approve Account</a>
                     </td>
                   </tr>
                 <% end %>

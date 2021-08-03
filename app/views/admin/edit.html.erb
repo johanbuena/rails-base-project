@@ -1,0 +1,32 @@
+<section class="p-5">
+  <div  class="container">
+    <div class="d-sm-flex">
+      <%= form_for @user, :url => { :action => "update" }, html: {class: "mx-auto p-5", method: :put} do |f| %>
+        <span class="h2 fw-bold">
+          Manage Account
+        </span>
+        <div class = "row">
+          <div class="col-md-6">
+            <%= f.label :first_name, class:"col-form-label" %>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :last_name, class:"col-form-label" %>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label :email, class:"col-form-label" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="border-top mt-2 col-md-12  d-grid">
+            <%= f.submit "Update", class: "btn btn-primary mt-2" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
