@@ -1,15 +1,36 @@
 <div>
-    <div>Purchase "<%= @portfolio.company_name %>"</div>
+    <div class = "mb-5"><h3>Purchase "<%= @portfolio.company_name %>"</h3></div>
 
-    <% form_tag model: @portfolio do |form| %>
+    <%= form_tag transactions_path  do %>
+
+        <div class="row mb-3">
+            <%= label_tag 'symbol', 'Symbol:', class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+                <%= text_field_tag 'symbol', @portfolio.symbol, readonly: true, class: "form-control-plaintext"  %>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <%= label_tag 'stock_name', 'Company Name:', class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+                <%= text_field_tag 'stock_name', @portfolio.company_name, readonly: true, class: "form-control-plaintext" %>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <%= label_tag 'price', 'Current Price:', class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+                <%= number_field_tag 'price', @portfolio.latest_price, readonly: true, class: "form-control-plaintext" %>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <%= label_tag 'shares', 'Enter No. of Shares:', class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+                <%= number_field_tag 'shares', 1, min: 1, class: "form-control" %>
+            </div>
+        </div>
         <div>
-            <%= form.label :company_name %><br>
-            <%= form.text_field :company_name %>
+            <%= submit_tag 'Buy', data: { confirm: "Are you sure you want to buy this?" } %>
         </div>
 
-        <div class = 'submit'>
-            <%= form.submit %>
-        </div>
     <% end %>
 
 </div>

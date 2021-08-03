@@ -1,47 +1,67 @@
-<h1>This is the Portfolio Page</h1>
+<p><h1>This is the Portfolio Page</h1></p>
 
 <% if @portfolio.empty? %>
     <p>portfolio is empty</p>
 <% else %>
-    <% @portfolio.each do |e| %>
-        asd
-    <% end %>
-<% end %>
-
-+++++<br/>
-
-<table class = "home_table table m-auto text-center">
+    <table class = "home_table table m-auto text-center">
         <thead>
             <tr>
-                <th>SYMBOL</th>
-                <th>NAME</th>
-                <th>VOLUME</th>
-                <th>PRICE</th>
-                <th>CHANGE</th>
+            <th>SYMBOL</th>
+            <th>NAME</th>
+            <th>VOLUME</th>
             </tr>
         </thead>
         <tbody>
-            <% @stocklist_view.each do |e| %>
+            <% @portfolio.each do |e| %>
                 <tr>
-                <td>
-                    <%= e.symbol %>
-                </td>
-                <td>
-                    <%= e.company_name %>
-                </td>
-                <td>
-                    <%= number_with_delimiter(e.avg_total_volume, :delimiter => ',') %>
-                </td>
-                <td>
-                    <%= number_to_currency(e.latest_price, :unit => "$") %>
-                </td>
-                <td>
-                    <%= e.change_percent_s %>
-                </td>
-                <td>
-                    <a href="/buy/<%= e.symbol %>" class="btn btn-primary m-1">Buy</a>
-                </td>
+                    <td>
+                        <%= e.symbol %>
+                    </td>
+                    <td>
+                        <%= e.stock_name %>
+                    </td>
+                    <td>
+                        <%= number_with_delimiter(e.shares, :delimiter => ',') %>
+                    </td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+<% end %>
+<br/>
+<table class = "home_table table m-auto text-center">
+    <thead>
+        <tr>
+            <th>SYMBOL</th>
+            <th>NAME</th>
+            <th>VOLUME</th>
+            <th>PRICE</th>
+            <th>CHANGE</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @stocklist_view.each do |e| %>
+            <tr>
+            <td>
+                <%= e.symbol %>
+            </td>
+            <td>
+                <%= e.company_name %>
+            </td>
+            <td>
+                <%= number_with_delimiter(e.avg_total_volume, :delimiter => ',') %>
+            </td>
+            <td>
+                <%= number_to_currency(e.latest_price, :unit => "$") %>
+            </td>
+            <td>
+                <%= e.change_percent_s %>
+            </td>
+            <td>
+                <a href="/buy/<%= e.symbol %>" class="btn btn-primary m-1">Buy</a>
+            </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

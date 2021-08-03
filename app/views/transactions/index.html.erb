@@ -1,1 +1,38 @@
 <h1>This is the Transaction Page</h1>
+<br/>
+<table class = "home_table table m-auto text-center">
+    <thead>
+        <tr>
+            <th>TYPE</th>
+            <th>NAME</th>
+            <th>VOLUME</th>
+            <th>PRICE</th>
+            <th>TOTAL</th>
+            <th>DATE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transaction.each do |e| %>
+            <tr>
+                <td>
+                    <%= e.transaction_type %>
+                </td>
+                <td>
+                    <%= e.stock_name %>
+                </td>
+                <td>
+                    <%= number_with_delimiter(e.shares, :delimiter => ',') %>
+                </td>
+                <td>
+                    <%= number_to_currency(e.price, :unit => "$") %>
+                </td>
+                <td>
+                    <%= number_to_currency(e.total_price, :unit => "$") %>
+                </td>
+                <td>
+                    <%= e.created_at %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

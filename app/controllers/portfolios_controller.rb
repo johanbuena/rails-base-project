@@ -33,10 +33,4 @@ class PortfoliosController < ApplicationController
         
     end
 
-    private
-
-    def purchase_params
-      params.require(:portfolio).permit(:company_name)
-    end
-
 end
