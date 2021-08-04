@@ -4,13 +4,12 @@ class TransactionsController < ApplicationController
     end
 
     def create
-        byebug
-        @price = purchase_params[:shares]
-        # @portfolio = Portfolio.new(purchase_params.merge(user_id: current_user.id))
-        # @transaction = Transaction.new(transaction_params.merge(user_id: current_user.id, transaction_type: 'BUY'))
-        # if @portfolio.save && @transaction.save
-        #     redirect_to transactions_path
-        # end
+        @total_price = purchase_params[:shares].to_i * purchase_params[:price].to_f
+        @portfolio = Portfolio.new(purchase_params.merge(user_id: current_user.id))
+        @transaction = Transaction.new(transaction_params.merge(user_id: current_user.id, transaction_type: 'BUY', total_price: @total_price))
+        if @portfolio.save && @transaction.save
+            redirect_to transactions_path
+        end
     end
     
     private

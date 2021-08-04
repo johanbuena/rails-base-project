@@ -9,6 +9,8 @@
             <th>SYMBOL</th>
             <th>NAME</th>
             <th>VOLUME</th>
+            <th>BUY PRICE</th>
+            <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +25,12 @@
                     <td>
                         <%= number_with_delimiter(e.shares, :delimiter => ',') %>
                     </td>
+                    <td>
+                        <%= number_to_currency(e.price, :unit => "$", :delimiter => ',') %>
+                    </td>
+                    <td>
+                        <a href="/portfolios/<%= e.id %>/edit" class="btn btn-primary m-1">Sell</a>
+                    </td>
                 </tr>
             <% end %>
         </tbody>
@@ -36,7 +44,6 @@
             <th>NAME</th>
             <th>VOLUME</th>
             <th>PRICE</th>
-            <th>CHANGE</th>
             <th>ACTION</th>
         </tr>
     </thead>
@@ -54,9 +61,6 @@
             </td>
             <td>
                 <%= number_to_currency(e.latest_price, :unit => "$") %>
-            </td>
-            <td>
-                <%= e.change_percent_s %>
             </td>
             <td>
                 <a href="/buy/<%= e.symbol %>" class="btn btn-primary m-1">Buy</a>
