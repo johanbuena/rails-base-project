@@ -27,8 +27,10 @@ class AdminController < ApplicationController
 
     def approve
         @user = User.find(params[:id])
-        if @user.update_attributes(:account_status => "true")
-                redirect_to admin_path
+
+        if AdminMailer.account_approve(@user).deliver
+            @user.update_attributes(:account_status => "true")
+            redirect_to admin_path
         end
     end
 
