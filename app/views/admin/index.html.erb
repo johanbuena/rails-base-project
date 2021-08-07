@@ -46,7 +46,38 @@
           </table>
         </div>
         <div class="tab-pane fade" id="allTransactions" role="tabpanel">
-          All Transactions
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">OWNER</th>
+                <th scope="col">TYPE</th>
+                <th scope="col">NAME</th>
+                <th scope="col">VOLUME</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">TOTAL</th>
+                <th scope="col">DATE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |t| %>
+                <tr>
+                  <td>
+                    <% @users.each do |u| %>
+                      <% if t.user_id == u.id%>
+                        <%= u.first_name%>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td><%= t.transaction_type %></td>
+                  <td><%= t.stock_name %></td>
+                  <td><%= number_with_delimiter(t.shares, :delimiter => ',') %></td>
+                  <td><%= number_to_currency(t.price, :unit => "$") %></td>
+                  <td><%= number_to_currency(t.total_price, :unit => "$") %></td>
+                  <td><%= t.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
         <div class="tab-pane fade" id="pendingUsers" role="tabpanel">
           <table class="table">

@@ -1,6 +1,8 @@
 class AdminController < ApplicationController
     def index
         @users = User.all
+        @transactions = Transaction.all
+        
     end
 
     def new
