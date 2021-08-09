@@ -1,11 +1,11 @@
-<p><h1>This is the Portfolio Page</h1></p>
-
 <% if @portfolio.empty? %>
-    <p>portfolio is empty</p>
+    <p>Portfolio is empty</p>
 <% else %>
-    <table class = "home_table table m-auto text-center">
+    <h1>Acquired Stocks</h1>
+    <table class = "home_table table m-auto text-center align-middle">
         <thead>
             <tr>
+            <th>ACQUIRED DATE</th>
             <th>SYMBOL</th>
             <th>NAME</th>
             <th>VOLUME</th>
@@ -16,6 +16,9 @@
         <tbody>
             <% @portfolio.each do |e| %>
                 <tr>
+                    <td>
+                        <%= e.created_at %>
+                    </td>
                     <td>
                         <%= e.symbol %>
                     </td>
@@ -37,7 +40,8 @@
     </table>
 <% end %>
 <br/>
-<table class = "home_table table m-auto text-center">
+<h1>Purchasable Stocks</h1>
+<table class = "home_table table m-auto text-center align-middle">
     <thead>
         <tr>
             <th>SYMBOL</th>
