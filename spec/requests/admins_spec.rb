@@ -4,20 +4,6 @@ require 'devise'
 
 RSpec.describe "Admins", type: :request do
 
-    describe "GET admin#index" do
-      it "should be able to get admin index page" do
-        get '/admin'
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    describe "GET admin#new" do
-      it "should be able to get the user creation page" do
-        get '/admin/new'
-        expect(response).to have_http_status(200)
-      end
-    end
-
     describe "Admin features" do
       def create_admin
         admin = User.new(email: 'admin@admin.com',
@@ -28,6 +14,25 @@ RSpec.describe "Admins", type: :request do
         admin.save!
         admin.confirm
         admin
+      end
+
+      def create_transaction
+        user = User.new(email: 'test@test.com',
+          first_name: 'fname',
+          last_name: 'lname',
+          account_status: TRUE)
+          user.password = 'pass123'
+          user.save!
+          user.confirm
+          sign_in user
+
+        test_transaction = user.transactions.create(stock_name: 'Test', 
+                                          price: 100.00, 
+                                          shares: 15,
+                                          total_price: 1500,
+                                          transaction_type: 'BUY'
+                                        )        
+        test_transaction
       end
 
       it "should be able to create a new user" do
@@ -81,10 +86,10 @@ RSpec.describe "Admins", type: :request do
       it "should be able to show all the transactions made by users" do
         account = create_admin
         sign_in account
-
+        transaction = create_transaction
         get "/admin"
         expect(response).to have_http_status(200)
-        
+        expect(response.body).to include(transaction.stock_name)
       end
 
     end
