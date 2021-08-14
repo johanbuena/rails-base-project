@@ -35,17 +35,15 @@ class PortfoliosController < ApplicationController
             secret_token: 'sk_40d28152931a462c81ecdc9fe9c7268f',
             endpoint: 'https://cloud.iexapis.com/v1'
             )
-        
         @new_price = client.quote(portfolio_params[:symbol]).latest_price
         @total_price = @new_price.to_f * portfolio_params[:qty_sell].to_i
-        @transaction = Transaction.new(
-                                    user_id: current_user.id, 
-                                    stock_name: portfolio_params[:stock_name],
-                                    price: @new_price,
-                                    shares: portfolio_params[:qty_sell],
-                                    total_price: @total_price,
-                                    transaction_type: 'SELL'
-                                )
+        @transaction = Transaction.new( user_id: current_user.id, 
+                                        stock_name: portfolio_params[:stock_name],
+                                        price: @new_price,
+                                        shares: portfolio_params[:qty_sell],
+                                        total_price: @total_price,
+                                        transaction_type: 'SELL'
+                                    )
 
         @portfolio = Portfolio.find(params[:id])
         @newShares = portfolio_params[:shares].to_i - portfolio_params[:qty_sell].to_i
@@ -62,7 +60,7 @@ class PortfoliosController < ApplicationController
     private
 
     def portfolio_params
-        params.require(:portfolio).permit(:shares, :qty_sell, :symbol, :stock_name, :symbol)
+        params.require(:portfolio).permit(:shares, :qty_sell, :symbol, :stock_name, :price)
     end
 
 end
